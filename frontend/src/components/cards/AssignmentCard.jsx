@@ -11,17 +11,29 @@ import {
   Button,
 } from "@mui/material";
 import { addPositionPropertiesToSections } from "@mui/x-date-pickers/internals";
+import { useMutation } from "@tanstack/react-query";
+import { deleteAssigment } from "../../api/assigment.api.mjs";
 
 const AssignmentCard = ({ assignment, type, history, link }) => {
   const naviagte = useNavigate();
 
   console.log(assignment);
-  const { _id, key, title, group, duration } = assignment;
+  const { _id, key, title, group, duration, description } = assignment;
 
   const handleNavigate = (assigment, aid) => {
     const navigateLink = link ? `${link}/${aid}` : aid;
 
     naviagte(navigateLink);
+  };
+
+  const mutation = useMutation({
+    mutationFn: deleteAssigment,
+    onSuccess: () => {},
+    onError: () => {},
+  });
+
+  const handleDelete = () => {
+    mutation.mutateAsync(_id);
   };
 
   const handleEditNavigate = (assignment, aid) => {
@@ -31,20 +43,28 @@ const AssignmentCard = ({ assignment, type, history, link }) => {
   return (
     <Card
       sx={{
-        minWidth: 400,
+        minWidth: 500,
         maxWidth: 500,
         p: 2,
         borderRadius: 0,
         border: "1px solid #d3dce6",
+        position: "relative",
+        top: 0,
+        pointer: "cursor",
+        transition: "top 0.5s ease, background 0.5s ease",
+        "&:hover": {
+          top: -10,
+          background:
+            "linear-gradient(0deg, rgba(197,195,244,1) 5%, rgba(136,140,255,0.0984768907563025) 40%)",
+        },
       }}
     >
       <Typography gutterBottom variant="h6" sx={{ fontSize: "1.2rem" }}>
-        {title}
+        {title?.slice(0, 50)}
       </Typography>
 
       <Typography gutterBottom variant="body2" color="text.secondary">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo, earum
-        sapiente numquam quaerat temporibus ratione recusandae dolorum
+        {description?.slice(0, 100)}
       </Typography>
 
       <Box sx={{ color: "#0556f3" }}>
@@ -56,23 +76,37 @@ const AssignmentCard = ({ assignment, type, history, link }) => {
           group {group ? group : "N/A"}
         </Typography>
 
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           {type === "instructor" && (
             <Button
-              variant="outlined"
-              onClick={() => handleEditNavigate(title, _id)}
+              color="error"
+              variant="contained"
+              onClick={() => handleDelete(_id)}
             >
-              Edit
+              Delete
             </Button>
           )}
 
-          <Button
-            sx={{ ml: "auto" }}
-            variant="outlined"
-            onClick={() => handleNavigate(title, _id)}
-          >
-            View
-          </Button>
+          <Box></Box>
+
+          <Box>
+            <Button
+              sx={{ mr: 1 }}
+              variant="contained"
+              onClick={() => handleNavigate(title, _id)}
+            >
+              View
+            </Button>
+
+            {type === "instructor" && (
+              <Button
+                variant="outlined"
+                onClick={() => handleEditNavigate(title, _id)}
+              >
+                Edit
+              </Button>
+            )}
+          </Box>
         </Box>
       </Box>
     </Card>

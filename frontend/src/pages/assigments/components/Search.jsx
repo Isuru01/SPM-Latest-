@@ -1,12 +1,23 @@
-import React from "react";
-import { Box, Button, TextField, Chip } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, TextField, Chip, colors } from "@mui/material";
 
-const Search = () => {
+const Search = ({ searh, setSearch }) => {
+  const [text, setText] = useState("");
+
   return (
     <Box sx={{ m: "auto", maxWidth: "1000px" }}>
       <Box sx={{ display: "flex", gap: 1 }}>
-        <TextField fullWidth />
-        <Button sx={{ width: 200 }} variant="contained">
+        <TextField
+          sx={{ backgroundColor: "#e8f0f7" }}
+          fullWidth
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <Button
+          onClick={() => setSearch(text)}
+          sx={{ width: 200, backgroundColor: "#0e4c7d" }}
+          variant="contained"
+        >
           Search
         </Button>
       </Box>
@@ -18,7 +29,14 @@ const Search = () => {
           { option: "Assignment", link: "" },
         ].map((option, index) => (
           <Chip
-            sx={{ cursor: "pointer", borderRadius: 0, p: 2, mr: 1 }}
+            variant="outlined"
+            sx={{
+              cursor: "pointer",
+              mr: 2,
+              pl: 2,
+              pr: 2,
+              backgroundColor: colors.blue[100],
+            }}
             label={option.option}
           />
         ))}

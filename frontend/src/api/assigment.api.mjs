@@ -46,12 +46,12 @@ const fetchAssigments = async ({ queryKey }) => {
   const result = await AxiosInstance().get(`/assigment`, {
     withCredentials: true,
   });
+
   return result.data;
 };
 
-const deleteAssigment = async (assigment) => {
-  const result = await AxiosInstance().delete("/assigment", {
-    data: assigment,
+const deleteAssigment = async (id) => {
+  const result = await AxiosInstance().delete(`/assigment/${id}`, {
     withCredentials: true,
   });
   return result.data;
