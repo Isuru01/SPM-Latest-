@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Stack,
-} from "@mui/material";
+// import {
+//   Box,
+//   List,
+//   ListItem,
+//   ListItemButton,
+//   ListItemText,
+//   Stack,
+// } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import {
   Overview,
@@ -19,29 +19,70 @@ import {
 } from "./components/assignments/index.mjs";
 import NavBar from "../../components/nav/NavBar";
 
-function Dashboard() {
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+
+const drawerWidth = 240;
+
+const Dashboard = () => {
   let { type, action } = useParams();
 
   return (
-    <Box>
-      <NavBar />
-
-      <Box sx={{ display: "flex" }}>
-        <Box sx={{ flexShrink: 0, borderRight: "1px solid #d3dce6", mr: 2 }}>
-          <SideNav />
-        </Box>
-
-        <Box sx={{ maxHeight: "90vh", overflow: "auto" }}>
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      >
+        <Toolbar>
+          <Typography variant="h6" noWrap component="div">
+            Permanent drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <SideNav />
+      </Drawer>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
+      >
+        <Toolbar />
+        <Box component="main" sx={{ flexGrow: 1, overflow: "auto" }}>
           <Routes>
             <Route path="/" element={<Overview />} />
+            <Route path="/quizz/*" element={<Quizz />} />
             <Route path="/assignment/*" element={<Assignments />} />
             <Route path="labs" element={<Labs />} />
-            <Route path="quizz" element={<Quizz />} />
           </Routes>
         </Box>
       </Box>
     </Box>
   );
-}
+};
 
 export default Dashboard;
