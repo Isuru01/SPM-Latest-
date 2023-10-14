@@ -7,6 +7,7 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import OverviewQuizz from "./overview/OverviewQuizz";
 
 import CreateQuizz from "./create/CreateQuizz";
+import QuizzEdit from "./edit/QuizzEdit";
 
 const Quizz = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Quizz = () => {
         <Routes>
           <Route path="/" element={<OverviewQuizz />} />
           <Route path="/create" element={<CreateQuizz />} />
+          <Route path="/edit/:id" element={<QuizzEdit />} />
         </Routes>
       </Box>
 

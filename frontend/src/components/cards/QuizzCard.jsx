@@ -11,17 +11,36 @@ import {
   Button,
 } from "@mui/material";
 import { addPositionPropertiesToSections } from "@mui/x-date-pickers/internals";
+import { useMutation } from "@tanstack/react-query";
+import { deleteQuizz } from "../../api/quizz.api.mjs";
 
-const QuizzCard = ({ quizz }) => {
+const QuizzCard = ({ quizz, type }) => {
   const naviagte = useNavigate();
 
   console.log(quizz);
 
-  const { title, description, key } = quizz;
+  const { _id, title, description, key } = quizz;
 
   const handleNavigate = (qid, title) => {
     // naviagte(`/quizzes/${qid}?=${qid}?title=${title}`);
+    naviagte(`/quizz/${_id}`);
   };
+
+  const handleEdit = () => {
+    naviagte(`edit/${_id}`);
+  };
+
+  const mutation = useMutation({
+    mutationFn: deleteQuizz,
+    onSuccess: () => {},
+    onError: () => {},
+  });
+
+  const handleDelete = () => {
+    mutation.mutateAsync(_id);
+  };
+
+  console.log(quizz);
 
   return (
     <Card
@@ -50,12 +69,29 @@ const QuizzCard = ({ quizz }) => {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          gap: 1,
+          alignSelf: "right",
         }}
       >
-        <Button variant="outlined" onClick={() => handleNavigate(key, title)}>
-          Visit
+        {type === "instructor" && (
+          <Button variant="contained" onClick={handleEdit}>
+            Edit
+          </Button>
+        )}
+
+        <Button
+          variant="outlined"
+          sx={{ ml: 12 }}
+          onClick={() => handleNavigate(key, title)}
+        >
+          View
         </Button>
+
+        {type === "instructor" && (
+          <Button variant="contained" color="error" onClick={handleDelete}>
+            Delete
+          </Button>
+        )}
       </Box>
     </Card>
   );

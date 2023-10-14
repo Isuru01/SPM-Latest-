@@ -6,10 +6,10 @@ import AssigmentCard from "../../../components/cards/AssignmentCard";
 import { Box, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-const AssigmentsResults = () => {
+const AssigmentsResults = ({ search }) => {
   const { isLoading, data: assigments } = useQuery({
     queryFn: fetchAssigments,
-    queryKey: ["assigments"],
+    queryKey: ["assigments", search],
     onSuccess: () => {},
     onError: () => {},
   });
@@ -26,9 +26,22 @@ const AssigmentsResults = () => {
         gap: 2,
       }}
     >
-      {assigments.map((assigment, index) => (
-        <AssigmentCard link={`/assignments`} assignment={assigment} />
-      ))}
+      {!search &&
+        assigments.map((assigment, index) => (
+          <AssigmentCard link={`/assignments`} assignment={assigment} />
+        ))}
+
+      {search &&
+        assigments
+          ?.filter(
+            (assigment) =>
+              assigment.title &&
+              search &&
+              assigment.title.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((assigment, index) => (
+            <AssigmentCard link={`/assignments`} assignment={assigment} />
+          ))}
     </Box>
   );
 };

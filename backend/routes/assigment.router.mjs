@@ -12,13 +12,13 @@ import {
 
 const router = Router();
 
-router
-  .route("/")
-  .post(createAssigment)
-  .get(fetchAllAssigment)
-  .delete(deleteAssigment);
+router.route("/").post(createAssigment).get(fetchAllAssigment);
 router.route("/analysis/:id").get(assigmentAnalysis);
 router.route("/code/:id").post(submitUserAssigment).get(getUserAssigment);
-router.route("/:id").put(updateAssigment).get(fetchAssigment);
+router
+  .route("/:id")
+  .put(updateAssigment)
+  .get(fetchAssigment)
+  .delete(deleteAssigment);
 
 export default router;

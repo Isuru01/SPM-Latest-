@@ -60,12 +60,10 @@ const fetchAssigment = async (req, res, next) => {
 };
 
 const deleteAssigment = async (req, res, next) => {
-  const { qid } = req.body;
-
-  console.log(qid);
+  const { id } = req.params;
 
   try {
-    const assigment = await Assigment.findOneAndDelete({ key: qid });
+    const assigment = await Assigment.findOneAndDelete({ _id: id });
 
     console.log(assigment);
     if (assigment) {

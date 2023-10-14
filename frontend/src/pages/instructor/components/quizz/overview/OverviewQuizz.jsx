@@ -26,7 +26,7 @@ const OverviewQuizz = () => {
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
       {data.map((quizz) => (
-        <QuizzCard key={quizz.key} quizz={quizz} />
+        <QuizzCard type="instructor" key={quizz.key} quizz={quizz} />
       ))}
     </Box>
   );

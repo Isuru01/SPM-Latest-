@@ -25,7 +25,7 @@ const OverviewAssignment = () => {
   if (isLoading) return <Loader />;
 
   const assigments = assigmentsData.map((assigment) => (
-    <AssignmentCard assignment={assigment} />
+    <AssignmentCard type="instructor" assignment={assigment} />
   ));
 
   return (

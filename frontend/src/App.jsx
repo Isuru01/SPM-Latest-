@@ -12,6 +12,8 @@ import {
   SignUp,
 } from "./pages/index.mjs";
 import "./App.css";
+import Quizzes from "./pages/quizzez/Quizzez";
+import Quizz from "./pages/quizz/Quizz";
 
 const App = () => {
   return (
@@ -48,6 +50,24 @@ const App = () => {
           element={
             <LogRoute>
               <InstructorDashboard />
+            </LogRoute>
+          }
+        />
+
+        <Route
+          path="/quizzes"
+          element={
+            <LogRoute>
+              <Quizzes />
+            </LogRoute>
+          }
+        />
+
+        <Route
+          path="/quizz/:id"
+          element={
+            <LogRoute>
+              <Quizz />
             </LogRoute>
           }
         />

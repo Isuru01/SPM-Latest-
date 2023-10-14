@@ -2,8 +2,9 @@
   /* background-color: #242424; */
   margin: 0;
   padding: 0;
-  background-color: #ffffffcf;
+  background-image: linear-gradient(90deg, rgb(239, 242, 247) 0%, rgb(237, 240, 249) 15.2057%, rgb(235, 239, 248) 26.297%, rgb(235, 239, 248) 28.9803%, rgb(231, 237, 249) 47.585%, rgb(230, 236, 250) 48.6583%, rgb(228, 236, 249) 57.6029%, rgb(227, 234, 250) 65.4741%, rgb(222, 234, 250) 72.093%, rgb(219, 230, 248) 79.4275%, rgb(216, 229, 248) 86.2254%, rgb(213, 228, 249)89.4454%, rgb(210,226,249)94.2755%,rgb(209,225,248)96.6011%,rgb(208,224,247)100%);
 }
+
 
 body {
   -webkit-font-smoothing: antialiased;
