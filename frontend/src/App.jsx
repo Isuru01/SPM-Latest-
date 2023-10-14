@@ -10,6 +10,7 @@ import {
   Assignment,
   SignIn,
   SignUp,
+  Chatbot
 } from "./pages/index.mjs";
 import "./App.css";
 
@@ -48,6 +49,14 @@ const App = () => {
           element={
             <LogRoute>
               <InstructorDashboard />
+            </LogRoute>
+          }
+        />
+         <Route
+          path="/chtbot"
+          element={
+            <LogRoute>
+              <Chatbot/>
             </LogRoute>
           }
         />
