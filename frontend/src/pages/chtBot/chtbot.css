@@ -1,0 +1,71 @@
+.App{
+    margin-left: 420px;
+}
+
+@media (max-width: 768px) {
+    .App {
+      margin-left: 320px; /* Adjust the value as per your requirement */
+    }
+  }
+  
+  /* Media Query for screen width less than or equal to 576px */
+  @media (max-width: 576px) {
+    .App {
+      margin-left: 220px; /* Adjust the value as per your requirement */
+    }
+  }
+
+
+.App{
+    margin-top: -30px;
+    width: 1520px;
+    height: 760px;
+  
+    /* background-image: url('https://play-lh.googleusercontent.com/JkoKbzwjN5WbLAiiSFfW8G-KslCLvIUeODvYI45iWr0o--X566UbG2eEmvhB4R00WQ'); */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Adjust the background repeat property as needed */
+
+}
+.App h1{
+
+  color: rgb(19, 154, 217);
+  font-size: 40px;
+  margin-left:-80px;
+}
+
+.img1{
+  align-items: center;
+  margin-left: 100px;
+}
+
+.dv1{
+  margin-left: -400px;
+  margin-top: 40px;
+  width: 98%;
+}
+
+.img2:hover {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2%);
+  }
+  50% {
+    transform: translateX(2%);
+  }
+  75% {
+    transform: translateX(-1%);
+  }
+  100% {
+    transform: translateX(1%);
+  }
+}
+
+.img2 {
+  animation: shake 1s infinite;
+}
