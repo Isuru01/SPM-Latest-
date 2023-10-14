@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import Quizz from "../models/quizz.model.mjs";
+import { compareSync } from "bcrypt";
 
 const updateQuizz = async (req, res, next) => {
   const quizz = req.body;
@@ -10,6 +11,22 @@ const updateQuizz = async (req, res, next) => {
       quizz,
       { upsert: true, new: true }
     );
+
+    res.status(200).json(updateQuizz);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateQuizzNew = async (req, res, next) => {
+  const quizz = req.body;
+  const { qid } = req.params;
+
+  try {
+    const updateQuizz = await Quizz.findOneAndUpdate({ _id: qid }, quizz, {
+      upsert: true,
+      new: true,
+    });
 
     res.status(200).json(updateQuizz);
   } catch (error) {
@@ -34,7 +51,7 @@ const fetchQuizz = async (req, res, next) => {
   const { qid } = req.params;
 
   try {
-    const quizz = await Quizz.findOne({ key: qid });
+    const quizz = await Quizz.findOne({ _id: qid });
 
     console.log(quizz);
 
@@ -45,10 +62,12 @@ const fetchQuizz = async (req, res, next) => {
 };
 
 const deleteQuizz = async (req, res, next) => {
-  const { qid } = req.body;
+  const { qid } = req.params;
+
+  console.log(qid);
 
   try {
-    const quizz = await Quizz.findOneAndDelete({ key: qid });
+    const quizz = await Quizz.findOneAndDelete({ _id: qid });
 
     if (quizz) {
       res.status(200).json({ message: "Quizz deleted successfully" });
@@ -60,4 +79,4 @@ const deleteQuizz = async (req, res, next) => {
   }
 };
 
-export { updateQuizz, fetchQuizzes, fetchQuizz, deleteQuizz };
+export { updateQuizz, fetchQuizzes, fetchQuizz, deleteQuizz, updateQuizzNew };
