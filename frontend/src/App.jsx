@@ -14,6 +14,7 @@ import {
 import "./App.css";
 import Quizzes from "./pages/quizzez/Quizzez";
 import Quizz from "./pages/quizz/Quizz";
+import Chatbot from "./pages/chtBot/ChatBot";
 
 const App = () => {
   return (
@@ -68,6 +69,24 @@ const App = () => {
           element={
             <LogRoute>
               <Quizz />
+            </LogRoute>
+          }
+        />
+
+        <Route
+          path="/quizz/:id"
+          element={
+            <LogRoute>
+              <Quizz />
+            </LogRoute>
+          }
+        />
+
+        <Route
+          path="/chtbot"
+          element={
+            <LogRoute>
+              <Chatbot />
             </LogRoute>
           }
         />

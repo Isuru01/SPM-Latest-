@@ -11,7 +11,7 @@ const options = [
   { title: "Code Editor", link: "/editor", image: c1 },
   { title: "Assigments", link: "/assignments", image: c2 },
   { title: "Quizz", link: "/quizzes", image: c3 },
-  { title: "Chat Bot", link: "", image: c4 },
+  { title: "Chat Bot", link: "/chtbot", image: c4 },
   { title: "Instrcutors", link: "/instructor/overview", image: c5 },
 ];
 
