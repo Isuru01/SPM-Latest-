@@ -15,13 +15,13 @@ const theme = createTheme({
       shade: "#616161",
     },
     text: {
-      primary: "#25265e",
+      primary: "#3a3b3c",
       secondary: "#424242",
       disabled: "#616161",
       hint: "#212121",
     },
     typography: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Inter",
     },
   },
   components: {

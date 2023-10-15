@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
+import { exec } from "child_process";
+import { writeFile } from "fs";
 import dayjs from "dayjs";
 import bodyParser from "body-parser";
 
@@ -56,6 +58,30 @@ app.use("/api/quizz", router_quizz);
 app.use("/api/assigment", router_assigment);
 app.use("/api/task", router_task);
 app.use("/api/search", router_search);
+
+app.post("/api/compile", (req, res) => {
+  const javaCode = req.body.code;
+
+  console.log(javaCode);
+
+  // Write the code to a .java file
+  writeFile("Main.java", javaCode, (err) => {
+    if (err) throw err;
+    console.log("Java code has been written to Main.java");
+
+    // Compile and run the .java file
+    exec("javac Main.java && java Main", (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return res.status(500).send(error.message);
+      }
+
+      // Send the output of the Java program back as the response
+      res.send(stdout ? stdout.toString() : stderr.toString());
+    });
+  });
+});
+
 app.use(errorHandler);
 
 // cron.schedule("0 12 * * *", scheduleShuttle);

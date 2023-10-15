@@ -17,13 +17,22 @@ const QuizzResults = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <Container>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+    <Box sx={{ minHeight: "100vh" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+
+          justifyContent: "center",
+          mt: 2,
+          gap: 2,
+        }}
+      >
         {quizzes.map((quizz) => (
           <QuizzCard key={quizz.key} quizz={quizz} />
         ))}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

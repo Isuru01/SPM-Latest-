@@ -16,15 +16,13 @@ import {
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-const AssignmentForm = ({ assigment, setAssigment }) => {
+const AssignmentForm = ({ assigment, setAssigment, errors }) => {
   const handleChange = (name, value) => {
     setAssigment((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
-
-  console.log(assigment);
 
   return (
     <Box>
@@ -33,7 +31,7 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
           {/* assigment data */}
           <Box sx={{ border: "1px solid #d3dce6", p: 2, borderRadius: 1 }}>
             <Typography variant="h6" sx={{ pb: 2 }}>
-              Assignment Deatils
+              Assignment Details
             </Typography>
 
             <Stack spacing={2}>
@@ -45,17 +43,20 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
                   label="Title"
                   variant="outlined"
                   value={assigment?.title || ""}
-                  // error={assigment?.title === "" && submit > 0 ? true : false}
+                  error={!!errors.title}
+                  helperText={errors.title}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
 
-                {/* title */}
+                {/* enrollKey */}
                 <TextField
                   name="enrollKey"
                   fullWidth
                   label="Enroll Key"
                   variant="outlined"
                   value={assigment?.enrollKey || ""}
+                  error={!!errors.enrollKey}
+                  helperText={errors.enrollKey}
                   onChange={(e) => handleChange(e.target.name, e.target.value)}
                 />
               </Box>
@@ -77,7 +78,8 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
                   renderInput={(params) => (
                     <TextField {...params} label="Field" />
                   )}
-                  error={true}
+                  error={!!errors.group}
+                  helperText={errors.group}
                 />
                 {/* module */}
                 <Autocomplete
@@ -95,6 +97,8 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
                   renderInput={(params) => (
                     <TextField {...params} label="Group" />
                   )}
+                  error={!!errors.module}
+                  helperText={errors.module}
                 />
               </Box>
 
@@ -107,6 +111,8 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
                 multiline
                 label="Description"
                 variant="outlined"
+                error={!!errors.description}
+                helperText={errors.description}
                 onChange={(e) => handleChange(e.target.name, e.target.value)}
               />
             </Stack>
@@ -121,7 +127,7 @@ const AssignmentForm = ({ assigment, setAssigment }) => {
               {/* available on */}
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <FormControl>
-                  <FormLabel>Strarts On</FormLabel>
+                  <FormLabel>Starts On</FormLabel>
                   <MobileDateTimePicker
                     onChange={(value) => handleChange("start", value)}
                     defaultValue={dayjs()}

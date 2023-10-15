@@ -84,8 +84,7 @@ const SignIn = () => {
               color="primary"
               sx={{ fontSize: "3.2rem", fontWeight: "600" }}
             >
-              Kick Start Your <br />
-              Career WIth Industy Lead
+              IIPLE LAB ENVIRONMENT
             </Typography>
 
             <Typography
@@ -93,7 +92,7 @@ const SignIn = () => {
               mt={2}
               sx={{ fontSize: "1rem", fontWeight: "600" }}
             >
-              # Find the best oppurtunity from the internet with Intern Finder
+              #Java Coding Lab Environment
             </Typography>
           </Box>
         </Box>

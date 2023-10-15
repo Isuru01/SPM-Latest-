@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Avatar } from "@mui/material";
+import { Box, Typography, Avatar, Button } from "@mui/material";
 import { getAssigmentAnalysis } from "../../../../api/assigment.api.mjs";
 import { useParams } from "react-router-dom";
 import { jsPDF } from "jspdf";
@@ -38,7 +38,7 @@ const AssigmentData = () => {
 
     autoTable(doc, { head: [tableColumn], body: tableRows });
 
-    doc.save("table.pdf");
+    doc.save("submissions.pdf");
   };
 
   console.log(answers);
@@ -53,17 +53,29 @@ const AssigmentData = () => {
 
   return (
     <Box>
-      <button onClick={exportToPDF}>Export to PDF</button>
-      <Typography>{title}</Typography>
-      <Typography>Submissions</Typography>
-      <Box sx={{ height: 400, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <Typography variant="h6" sx={{ mb: 1, mt: 2 }}>
+          {title}
+        </Typography>
+
+        <Button variant="outlined" onClick={exportToPDF}>
+          Export to PDF
+        </Button>
+      </Box>
+
+      <Box sx={{ border: "1px solid #d3dce6", p: 2 }}>
+        <Typography variant="h6" sx={{ mb: 2, mt: 2 }}>
+          Student Submissions
+        </Typography>
+        <Box sx={{ height: 400, width: "100%" }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
+        </Box>
       </Box>
     </Box>
   );

@@ -15,10 +15,12 @@ import {
 } from "../../../../api/assigment.api.mjs";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../Loader";
+import Notify from "../../../../components/alert/Notify";
 
 const Workspace = () => {
   const { id } = useParams();
 
+  const [open, setOpen] = useState(false);
   const [workspace, setWokspace] = useState({
     aid: id,
     code: "",
@@ -51,7 +53,9 @@ const Workspace = () => {
 
   const mutation = useMutation({
     mutationFn: updateAssigment,
-    onSuccess: () => {},
+    onSuccess: () => {
+      setOpen(true);
+    },
     onError: () => {},
   });
 
@@ -62,18 +66,25 @@ const Workspace = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <Box sx={{ border: "1px solid #d3dce6", p: 2, ml: 2 }}>
-      <Stack spacing={2}>
-        <Typography variant="h6">Create Workspace</Typography>
-        <TextEditor instruction={workspace.instruction} onSave={handleSave} />
-        <Code code={workspace.code} onSave={handleSave} />
-        <UploadPdf />
+    <>
+      <Notify
+        msg="Workspace Successfully Create"
+        open={open}
+        setOpen={setOpen}
+      />
+      <Box sx={{ border: "1px solid #d3dce6", p: 2, ml: 2 }}>
+        <Stack spacing={2}>
+          <Typography variant="h6">Create Workspace</Typography>
+          <TextEditor instruction={workspace.instruction} onSave={handleSave} />
+          <Code code={workspace.code} onSave={handleSave} />
+          {/* <UploadPdf /> */}
 
-        <Button onClick={handleSubmit} variant="contained">
-          Save Workspace
-        </Button>
-      </Stack>
-    </Box>
+          <Button onClick={handleSubmit} variant="contained">
+            Save Workspace
+          </Button>
+        </Stack>
+      </Box>
+    </>
   );
 };
 

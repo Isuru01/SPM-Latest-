@@ -63,7 +63,10 @@ const Question = ({ question }) => {
       }}
       onSubmit={handleSubmit}
     >
-      <Box dangerouslySetInnerHTML={{ __html: question.question }} />
+      <Box
+        sx={{ mt: 2, fontSize: "1.2rem", fontWeight: 500 }}
+        dangerouslySetInnerHTML={{ __html: question.question }}
+      />
 
       <Box sx={{ display: "flex", flexDirection: "column", m: 4 }}>
         {question.answers.map((answer, index) => (
@@ -94,7 +97,10 @@ const Question = ({ question }) => {
       </Button>
 
       {submitted && (
-        <Box dangerouslySetInnerHTML={{ __html: question.solution }} />
+        <Box
+          sx={{ mt: 2, fontSize: "1.2rem", fontWeight: 500 }}
+          dangerouslySetInnerHTML={{ __html: question.solution }}
+        />
       )}
     </Box>
   );

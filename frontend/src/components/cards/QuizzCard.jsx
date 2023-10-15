@@ -45,11 +45,21 @@ const QuizzCard = ({ quizz, type }) => {
   return (
     <Card
       sx={{
-        minWidth: 400,
+        minWidth: 500,
         maxWidth: 500,
         p: 2,
         borderRadius: 0,
         border: "1px solid #d3dce6",
+        position: "relative",
+        top: 0,
+        pointer: "cursor",
+        transition: "top 0.5s ease, background 0.5s ease",
+        "&:hover": {
+          top: -10,
+          background:
+            "linear-gradient(0deg, rgba(197,195,244,1) 5%, rgba(136,140,255,0.0984768907563025) 40%)",
+          border: undefined,
+        },
       }}
     >
       <Typography gutterBottom variant="h6" sx={{ fontSize: "1.2rem" }}>
@@ -79,19 +89,19 @@ const QuizzCard = ({ quizz, type }) => {
           </Button>
         )}
 
-        <Button
-          variant="outlined"
-          sx={{ ml: 12 }}
-          onClick={() => handleNavigate(key, title)}
-        >
-          View
-        </Button>
-
         {type === "instructor" && (
           <Button variant="contained" color="error" onClick={handleDelete}>
             Delete
           </Button>
         )}
+
+        <Button
+          variant="outlined"
+          sx={{ ml: "auto" }}
+          onClick={() => handleNavigate(key, title)}
+        >
+          View
+        </Button>
       </Box>
     </Card>
   );

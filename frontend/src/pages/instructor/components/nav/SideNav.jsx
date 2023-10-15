@@ -19,25 +19,9 @@ const SideNav = () => {
     <Stack sx={{ width: navWidth }}>
       <Toolbar />
 
-      <ListItem disablePadding>
-        <ListItemButton
-          onClick={() => {
-            navigate(`/instructor`);
-            setSelected("overview");
-          }}
-          sx={{
-            backgroundColor:
-              selected === "overview" ? "lightblue" : "transparent",
-            color: selected === "overview" ? "blue" : "black",
-          }}
-        >
-          <ListItemText primary="overview" />
-        </ListItemButton>
-      </ListItem>
-
       {
         <List>
-          {["assignment", "labs", "quizz"].map((text, index) => (
+          {["assignment", "quizz"].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton
                 onClick={() => {
@@ -47,10 +31,17 @@ const SideNav = () => {
                 sx={{
                   backgroundColor:
                     selected === text ? "lightblue" : "transparent",
+
                   color: selected === text ? "blue" : "black",
                 }}
               >
-                <ListItemText primary={text} />
+                <ListItemText
+                  primary={text}
+                  primaryTypographyProps={{
+                    fontWeight: 500,
+                    fontSize: "1.4rem",
+                  }}
+                />
               </ListItemButton>
             </ListItem>
           ))}

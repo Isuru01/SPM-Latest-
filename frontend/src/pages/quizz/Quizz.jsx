@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import React from "react";
 import { fetchQuizz } from "../../api/quizz.api.mjs";
 import Loader from "../../components/common/Loader";
@@ -25,8 +25,20 @@ const Quizz = () => {
     <Box>
       <NavBar />
 
-      <Container sx={{ border: "1px solid #d3dce6", p: 7 }}>
-        <Typography variant="h6">{quizz.title}</Typography>
+      <Container
+        sx={{
+          border: "1px solid #d3dce6",
+          p: 7,
+          mt: 10,
+          backgroundColor: "#FFFFFF",
+        }}
+      >
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          {quizz.title}
+        </Typography>
+
+        <Divider sx={{ mb: 2 }} />
+
         {quizz.questions.map((question) => (
           <Question question={question} />
         ))}

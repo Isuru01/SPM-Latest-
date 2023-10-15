@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 // import {
 //   Box,
 //   List,
@@ -38,18 +38,39 @@ import MailIcon from "@mui/icons-material/Mail";
 const drawerWidth = 240;
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  const homeNavigate = () => {
+    navigate("/");
+  };
+
   let { type, action } = useParams();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        background:
+          "linear-gradient(0deg, rgba(197,195,244,1) 5%, rgba(136,140,255,0.0984768907563025) 40%)",
+      }}
+    >
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        sx={{
+          width: `calc(100% - ${drawerWidth}px)`,
+          ml: `${drawerWidth}px`,
+        }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
+          <Typography
+            variant="h6"
+            noWrap
+            sx={{ cursor: "pointer" }}
+            component="div"
+            onClick={homeNavigate}
+          >
+            IIPLE
           </Typography>
         </Toolbar>
       </AppBar>
@@ -74,7 +95,7 @@ const Dashboard = () => {
         <Toolbar />
         <Box component="main" sx={{ flexGrow: 1, overflow: "auto" }}>
           <Routes>
-            <Route path="/" element={<Overview />} />
+            <Route path="/" element={<Assignments />} />
             <Route path="/quizz/*" element={<Quizz />} />
             <Route path="/assignment/*" element={<Assignments />} />
             <Route path="labs" element={<Labs />} />

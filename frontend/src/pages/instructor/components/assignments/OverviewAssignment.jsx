@@ -16,7 +16,7 @@ const OverviewAssignment = () => {
   };
 
   const { isLoading, data: assigmentsData } = useQuery({
-    queryKey: ["assigment"],
+    queryKey: ["assigments"],
     queryFn: fetchAssigments,
     onSuccess: () => {},
     onError: () => {},

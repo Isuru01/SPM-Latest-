@@ -112,6 +112,7 @@ const Assigment = () => {
       </AppBar>
       <Drawer
         sx={{
+          bgcolor: "#eeeef0",
           width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
